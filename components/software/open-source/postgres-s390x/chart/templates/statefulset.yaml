@@ -69,6 +69,11 @@ spec:
         - name: {{ . | quote }}
         {{- end }}
       {{- end }}
+      {{- if not .Values.persistence.enabled }}
+      volumes:
+        - name: postgres-data
+          emptyDir: {}
+      {{- end }}
       containers:
         - name: {{ .Values.container.name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
