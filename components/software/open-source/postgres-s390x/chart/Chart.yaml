@@ -1,0 +1,6 @@
+apiVersion: v2
+name: postgres-s390x
+description: A Helm chart for PostgreSQL 16 on IBM Z / LinuxONE (s390x)
+type: application
+version: 1.0.0
+appVersion: "16.0"

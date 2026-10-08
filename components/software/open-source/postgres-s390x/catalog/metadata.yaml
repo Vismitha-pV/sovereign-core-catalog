@@ -1,0 +1,52 @@
+apiVersion: sovereign-catalog.io/v1alpha1
+kind: SoftwareListing
+metadata:
+  companyRef: "companies/open-source"
+  vendor: "PostgreSQL Global Development Group"
+  product: "PostgreSQL (s390x)"
+  shortDescription: "Enterprise-grade PostgreSQL relational database packaged for IBM Z / LinuxONE (s390x) architecture on Red Hat OpenShift and Kubernetes."
+  fullDescription: "PostgreSQL is a powerful, open-source object-relational database system backed by over 35 years of active development, earning a strong reputation for reliability, feature robustness, and performance. This listing delivers PostgreSQL 16 compiled and optimized for IBM Z / LinuxONE (s390x) big-endian architecture using Red Hat UBI container images. It is fully air-gap capable with zero external network dependencies, non-root execution matching OpenShift restricted-v2 Security Context Constraints, and built-in health probes."
+  sovereignCoreRelevance: "Delivers a fully air-gapped, open-source relational database running natively on s390x (IBM Z / LinuxONE) infrastructure, suitable for sovereign data, core banking, and regulated enterprise environments."
+  category: "data"
+  industries: ["government", "bfsi", "healthcare", "telco", "energy"]
+  intendedUsers: ["Database administrators", "Application developers", "Platform engineers", "Data architects"]
+  version: "16.0"
+  lifecycleStatus: "approved"
+  storefrontVisibility: "public"
+  availabilityState: "available_central_it"
+spec:
+  openSource:
+    enabled: true
+    license: "PostgreSQL"
+    upstreamProject: "https://github.com/postgres/postgres"
+    upstreamVersion: "16.0"
+  architecture:
+    format: "Kubernetes"
+    airgapReady: true
+    dependencyEndpoints: []
+    storage:
+      csiAccessModes: ["ReadWriteOnce"]
+      volumeSnapshotSupport: false
+  security:
+    podSecurityStandard: "restricted"
+    requiresClusterAdmin: false
+    readOnlyRootFilesystem: false
+    kmsIntegration: false
+  deployment:
+    type: "Helm"
+    repository: "oci://registry.redhat.io/rhel9/postgresql-16"
+  links:
+    docsUrl: "https://www.postgresql.org/docs/16/"
+    productPageUrl: "https://www.postgresql.org"
+  catalog:
+    brokerType: "platform"
+    sourceType: "helm-git"
+    name: "postgres-s390x"
+    sourceRepo: "oci://registry.redhat.io/rhel9/postgresql-16"
+    images:
+      - source: "registry.redhat.io/rhel9/postgresql-16:latest"
+        destination: "registry.redhat.io/rhel9/postgresql-16:latest"
+brokerType: "platform"
+sourceType: "helm-git"
+name: "postgres-s390x"
+sourceRepo: oci://registry.redhat.io/rhel9/postgresql-16

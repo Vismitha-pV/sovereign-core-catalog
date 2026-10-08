@@ -1,0 +1,82 @@
+# Default values for postgres-s390x chart
+nameOverride: ""
+fullnameOverride: ""
+
+namespaceOverride: ""
+
+commonLabels:
+  app: postgres-s390x
+  service-type: postgres-s390x
+commonAnnotations: {}
+
+instance:
+  name: ""
+  id: ""
+  environment: ""
+  clusterName: ""
+
+image:
+  repository: registry.redhat.io/rhel9/postgresql-16
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+service:
+  name: postgres-s390x
+  port: 5432
+  clusterIP: None
+
+statefulset:
+  name: postgres-s390x
+  replicas: 1
+
+auth:
+  postgresPassword: "change-me-postgres-password"
+  database: "appdb"
+  username: "appuser"
+  password: "change-me-password"
+
+databaseConfig: {}
+
+persistence:
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
+  storageClassName: ""
+
+container:
+  name: postgres
+  resources:
+    limits:
+      cpu: "2"
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 512Mi
+
+nodeSelector:
+  kubernetes.io/arch: s390x
+
+securityContext:
+  pod:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  container:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: false
+
+probes:
+  readiness:
+    initialDelaySeconds: 15
+    periodSeconds: 10
+    timeoutSeconds: 5
+  liveness:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5

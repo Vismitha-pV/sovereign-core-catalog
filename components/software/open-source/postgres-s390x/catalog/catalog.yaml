@@ -1,0 +1,24 @@
+name: Postgres Database (s390x)
+metadata:
+  name: postgres-s390x-helm-git
+  namespace: byop-broker
+spec:
+  productId: postgres-s390x-helm
+  sourceType: helm-git
+  repoURL: git@github.ibm.com:sovcore/sovcore-placeholder.git
+  version: "1.0.0"
+  catalogRegistration:
+    displayName: Postgres Database (s390x)
+    description: Full-lifecycle Postgres 16 database service for IBM Z / LinuxONE (s390x) with broker-generated credentials, deployed via Helm using Red Hat UBI container image
+    plans:
+      - id: standard
+        name: Standard
+        description: Standard postgres s390x deployment with persistent storage and auto-generated credentials
+      - id: postgreshelm_s390x_plan
+        name: Default
+        description: Default postgres s390x deployment with persistent storage and auto-generated credentials
+    category: databases
+    tags: [Database, SQL, RelationalDB, PostgreSQL, s390x, IBM-Z]
+    supportUrl: https://www.ibm.com
+    marketingUrl: https://www.ibm.com/products
+    provisioningDurationMinutes: 10
